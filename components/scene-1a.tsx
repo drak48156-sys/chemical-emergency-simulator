@@ -193,190 +193,269 @@ function Road() {
 /* -------------------------------------------------------------------------- */
 
 function TankerTruck() {
-  const cabPaint = useMemo(() => createPaintTexture("#f0f0f0", "#ffffff"), [])
+  const cabPaint = useMemo(() => createPaintTexture("#f3f3f3", "#ffffff"), [])
   const steelTexture = useMemo(() => createSteelTexture(), [])
 
   return (
     <group position={[2.5, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-      {/* Cab side mirrors */}
+      <mesh position={[3.1, 0.45, 0]} castShadow>
+        <boxGeometry args={[8.4, 0.18, 2.45]} />
+        <meshStandardMaterial color="#78838d" metalness={0.9} roughness={0.25} />
+      </mesh>
+
+      <mesh position={[3.72, 1.52, 0]} rotation={[0, 0, -0.03]} castShadow>
+        <boxGeometry args={[2.48, 1.88, 2.18]} />
+        <meshStandardMaterial map={cabPaint} color="#f5f5f5" roughness={0.24} metalness={0.38} />
+      </mesh>
+      <mesh position={[3.05, 2.12, 0]} castShadow>
+        <boxGeometry args={[1.16, 0.52, 2.0]} />
+        <meshStandardMaterial map={cabPaint} color="#f7f7f7" roughness={0.22} metalness={0.28} />
+      </mesh>
+      <mesh position={[4.48, 2.34, 0]} castShadow>
+        <boxGeometry args={[1.05, 0.54, 2.02]} />
+        <meshStandardMaterial map={cabPaint} color="#f5f5f5" roughness={0.22} metalness={0.3} />
+      </mesh>
+      <mesh position={[4.83, 1.72, 0]} castShadow>
+        <boxGeometry args={[0.34, 0.95, 1.92]} />
+        <meshStandardMaterial map={cabPaint} color="#f7f7f7" roughness={0.24} metalness={0.24} />
+      </mesh>
+      <mesh position={[4.63, 1.98, 0]} rotation={[0, 0, -0.18]} castShadow>
+        <boxGeometry args={[0.12, 1.18, 1.9]} />
+        <meshStandardMaterial color="#314355" roughness={0.05} metalness={0.15} transparent opacity={0.58} />
+      </mesh>
+      <mesh position={[3.42, 1.72, 1.14]} castShadow>
+        <boxGeometry args={[1.18, 1.18, 0.06]} />
+        <meshStandardMaterial color="#dfe3e6" roughness={0.26} metalness={0.35} />
+      </mesh>
+      <mesh position={[3.42, 1.72, -1.14]} castShadow>
+        <boxGeometry args={[1.18, 1.18, 0.06]} />
+        <meshStandardMaterial color="#dfe3e6" roughness={0.26} metalness={0.35} />
+      </mesh>
+      <mesh position={[3.05, 0.92, 1.13]} castShadow>
+        <boxGeometry args={[1.15, 0.34, 0.14]} />
+        <meshStandardMaterial color="#d5d9dc" metalness={0.82} roughness={0.2} />
+      </mesh>
+      <mesh position={[3.05, 0.92, -1.13]} castShadow>
+        <boxGeometry args={[1.15, 0.34, 0.14]} />
+        <meshStandardMaterial color="#d5d9dc" metalness={0.82} roughness={0.2} />
+      </mesh>
+      <mesh position={[2.65, 0.78, 0]} castShadow>
+        <boxGeometry args={[1.1, 0.32, 2.08]} />
+        <meshStandardMaterial color="#cfd4d7" metalness={0.88} roughness={0.18} />
+      </mesh>
+
       {[
-        [4.15, 2.1, 1.35],
-        [4.15, 2.1, -1.35],
+        [4.22, 2.02, 1.42],
+        [4.22, 2.02, -1.42],
       ].map((p, i) => (
         <group key={`mirror-${i}`} position={p as [number, number, number]}>
-          <mesh rotation={[0, 0, Math.PI / 8]} castShadow>
-            <boxGeometry args={[0.08, 0.35, 0.18]} />
-            <meshStandardMaterial color="#d9d9d9" metalness={0.95} roughness={0.1} />
+          <mesh rotation={[0, 0, Math.PI / 10]} castShadow>
+            <boxGeometry args={[0.08, 0.42, 0.2]} />
+            <meshStandardMaterial color="#d9d9d9" metalness={0.95} roughness={0.08} />
           </mesh>
-          <mesh position={[-0.12, -0.1, 0]} rotation={[0, 0, i === 0 ? Math.PI / 5 : -Math.PI / 5]} castShadow>
-            <cylinderGeometry args={[0.02, 0.02, 0.28, 8]} />
+          <mesh position={[-0.14, -0.12, 0]} rotation={[0, 0, i === 0 ? Math.PI / 5 : -Math.PI / 5]} castShadow>
+            <cylinderGeometry args={[0.02, 0.02, 0.34, 8]} />
             <meshStandardMaterial color="#d0d0d0" metalness={0.92} roughness={0.12} />
           </mesh>
         </group>
       ))}
 
-      {/* Cab roof lights */}
-      {[-0.7, 0, 0.7].map((z, i) => (
-        <mesh key={`roof-light-${i}`} position={[4.2, 2.78, z]} castShadow>
+      {[-0.72, 0, 0.72].map((z, i) => (
+        <mesh key={`roof-light-${i}`} position={[4.22, 2.8, z]} castShadow>
           <boxGeometry args={[0.18, 0.1, 0.12]} />
-          <meshStandardMaterial color="#ffb347" emissive="#ff9f2a" emissiveIntensity={0.6} />
-        </mesh>
-      ))}
-      {/* Cab */}
-      <mesh position={[3.5, 1.6, 0]} castShadow>
-        <boxGeometry args={[2.2, 2.2, 2.4]} />
-        <meshStandardMaterial map={cabPaint} color="#f0f0f0" roughness={0.22} metalness={0.45} />
-      </mesh>
-      {/* Cab windshield */}
-      <mesh position={[4.55, 2, 0]} castShadow>
-        <boxGeometry args={[0.15, 1.1, 2.0]} />
-        <meshStandardMaterial color="#2c3e50" roughness={0.05} metalness={0.15} transparent opacity={0.52} />
-      </mesh>
-
-      {/* Chassis between cab and tank */}
-      <mesh position={[1.8, 1.0, 0]} castShadow>
-        <boxGeometry args={[1.2, 0.4, 2.2]} />
-        <meshStandardMaterial color="#f0f0f0" roughness={0.2} metalness={0.9} />
-      </mesh>
-      <mesh position={[-0.8, 0.95, 0]} castShadow>
-        <boxGeometry args={[4.9, 0.32, 2.25]} />
-        <meshStandardMaterial color="#f0f0f0" roughness={0.2} metalness={0.9} />
-      </mesh>
-
-      {/* Wheel mudguards */}
-      {[
-        [0.15, 0.95, 1.25],
-        [0.15, 0.95, -1.25],
-        [-2.4, 0.95, 1.25],
-        [-2.4, 0.95, -1.25],
-      ].map((p, i) => (
-        <mesh key={`mudguard-${i}`} position={p as [number, number, number]} rotation={[0, 0, Math.PI / 2]} castShadow>
-          <torusGeometry args={[0.6, 0.08, 8, 16, Math.PI]} />
-          <meshStandardMaterial color="#bfc5c8" roughness={0.22} metalness={0.82} />
+          <meshStandardMaterial color="#ffb347" emissive="#ff9f2a" emissiveIntensity={0.5} />
         </mesh>
       ))}
 
-      {/* Tank cylinder */}
-      <mesh position={[-1.2, 1.8, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <cylinderGeometry args={[1.3, 1.3, 5.5, 32]} />
-        <meshStandardMaterial map={steelTexture} color="#dfe4e7" roughness={0.18} metalness={0.88} />
+      <mesh position={[-0.95, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[1.24, 1.24, 5.95, 40]} />
+        <meshStandardMaterial map={steelTexture} color="#dfe4e7" roughness={0.16} metalness={0.92} />
       </mesh>
-      {/* Tank end caps */}
-      <mesh position={[-3.95, 1.8, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <sphereGeometry args={[1.3, 24, 16]} />
-        <meshStandardMaterial map={steelTexture} color="#cfd5d8" roughness={0.2} metalness={0.88} />
+      <mesh position={[-3.92, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <sphereGeometry args={[1.24, 28, 20]} />
+        <meshStandardMaterial map={steelTexture} color="#cfd5d8" roughness={0.18} metalness={0.9} />
       </mesh>
-      <mesh position={[1.55, 1.8, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <sphereGeometry args={[1.3, 24, 16]} />
-        <meshStandardMaterial map={steelTexture} color="#cfd5d8" roughness={0.2} metalness={0.88} />
+      <mesh position={[2.02, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <sphereGeometry args={[1.24, 28, 20]} />
+        <meshStandardMaterial map={steelTexture} color="#cfd5d8" roughness={0.18} metalness={0.9} />
       </mesh>
 
-      {/* Hazard band */}
-      <mesh position={[-1.2, 1.8, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[1.31, 1.31, 0.6, 32]} />
-        <meshStandardMaterial color="#e87a1f" emissive="#e87a1f" emissiveIntensity={0.15} />
+      <mesh position={[-0.95, 1.82, 1.16]}>
+        <boxGeometry args={[5.75, 0.22, 0.08]} />
+        <meshStandardMaterial color="#ff6f1a" emissive="#ff6f1a" emissiveIntensity={0.18} />
+      </mesh>
+      <mesh position={[-0.95, 1.3, 1.19]}>
+        <boxGeometry args={[5.6, 0.1, 0.05]} />
+        <meshStandardMaterial color="#42474d" metalness={0.8} roughness={0.25} />
       </mesh>
 
-      {/* Hazard diamond placards */}
-      {[
-        [-1.2, 1.8, 1.31],
-        [-1.2, 1.8, -1.31],
-      ].map((p, i) => (
-        <group key={`placard-${i}`} position={p as [number, number, number]} rotation={[0, 0, Math.PI / 4]}>
-          <mesh>
-            <planeGeometry args={[0.7, 0.7]} />
-            <meshStandardMaterial color="#f0c419" side={THREE.DoubleSide} />
-          </mesh>
-          <mesh position={[0, 0, 0.01]}>
-            <planeGeometry args={[0.42, 0.42]} />
-            <meshStandardMaterial color="#111111" side={THREE.DoubleSide} />
-          </mesh>
-        </group>
+      <group position={[-0.5, 1.86, 1.27]} rotation={[0, 0, Math.PI / 4]}>
+        <mesh>
+          <planeGeometry args={[0.72, 0.72]} />
+          <meshStandardMaterial color="#f04f2e" side={THREE.DoubleSide} />
+        </mesh>
+        <mesh position={[0, 0, 0.01]}>
+          <planeGeometry args={[0.4, 0.4]} />
+          <meshStandardMaterial color="#111111" side={THREE.DoubleSide} />
+        </mesh>
+      </group>
+
+      {[-2.8, -1.55, -0.2, 1.15].map((x, i) => (
+        <mesh key={`hatch-${i}`} position={[x, 3.03, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+          <torusGeometry args={[0.18, 0.03, 8, 20]} />
+          <meshStandardMaterial color="#bfc4c7" metalness={0.88} roughness={0.2} />
+        </mesh>
+      ))}
+      <mesh position={[-1.0, 3.0, -1.32]} castShadow>
+        <boxGeometry args={[4.8, 0.08, 0.16]} />
+        <meshStandardMaterial color="#bfc5c8" roughness={0.2} metalness={0.86} />
+      </mesh>
+      {[-3.15, -1.95, -0.75, 0.45, 1.65].map((x, i) => (
+        <mesh key={`rail-post-${i}`} position={[x, 3.12, -1.32]} castShadow>
+          <cylinderGeometry args={[0.03, 0.03, 0.34, 8]} />
+          <meshStandardMaterial color="#c9ced2" metalness={0.86} roughness={0.22} />
+        </mesh>
       ))}
 
-      {/* Rear ladder and top rail */}
-      <group position={[-3.8, 1.25, -1.38]}>
-        <mesh position={[0, 0.9, 0]} castShadow>
-          <cylinderGeometry args={[0.04, 0.04, 1.8, 8]} />
-          <meshStandardMaterial color="#b8b8b8" metalness={0.8} roughness={0.25} />
+      <group position={[-3.65, 1.3, -1.36]}>
+        <mesh position={[0, 0.92, 0]} castShadow>
+          <cylinderGeometry args={[0.04, 0.04, 1.85, 8]} />
+          <meshStandardMaterial color="#b8b8b8" metalness={0.82} roughness={0.22} />
         </mesh>
-        <mesh position={[0.35, 0.9, 0]} castShadow>
-          <cylinderGeometry args={[0.04, 0.04, 1.8, 8]} />
-          <meshStandardMaterial color="#b8b8b8" metalness={0.8} roughness={0.25} />
+        <mesh position={[0.38, 0.92, 0]} castShadow>
+          <cylinderGeometry args={[0.04, 0.04, 1.85, 8]} />
+          <meshStandardMaterial color="#b8b8b8" metalness={0.82} roughness={0.22} />
         </mesh>
-        {[0.25, 0.65, 1.05, 1.45].map((y, i) => (
-          <mesh key={`rung-${i}`} position={[0.175, y, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-            <cylinderGeometry args={[0.03, 0.03, 0.34, 8]} />
-            <meshStandardMaterial color="#c8c8c8" metalness={0.8} roughness={0.25} />
+        {[0.25, 0.62, 0.99, 1.36].map((y, i) => (
+          <mesh key={`rung-${i}`} position={[0.19, y, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+            <cylinderGeometry args={[0.03, 0.03, 0.36, 8]} />
+            <meshStandardMaterial color="#c8c8c8" metalness={0.84} roughness={0.22} />
           </mesh>
         ))}
       </group>
-      <mesh position={[-1.25, 3.15, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <torusGeometry args={[1.05, 0.04, 8, 32, Math.PI]} />
-        <meshStandardMaterial color="#bfc4c7" metalness={0.85} roughness={0.25} />
+
+      <mesh position={[-3.88, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <torusGeometry args={[1.27, 0.06, 10, 34]} />
+        <meshStandardMaterial color="#d64d3d" metalness={0.35} roughness={0.45} />
+      </mesh>
+      {[-0.92, -0.3, 0.32, 0.92].map((y, i) => (
+        <mesh key={`rear-rivet-${i}`} position={[-5.11, 1.82 + y, 0.02]} castShadow>
+          <boxGeometry args={[0.05, 0.12, 2.08]} />
+          <meshStandardMaterial color="#d9d9d9" metalness={0.86} roughness={0.22} />
+        </mesh>
+      ))}
+
+      <mesh position={[-1.1, 0.98, -1.4]} castShadow>
+        <boxGeometry args={[4.55, 0.1, 0.26]} />
+        <meshStandardMaterial color="#bfc5c8" roughness={0.2} metalness={0.84} />
+      </mesh>
+      {[-2.4, -0.75, 0.9].map((x, i) => (
+        <mesh key={`support-${i}`} position={[x, 0.68, -1.18]} castShadow>
+          <boxGeometry args={[0.14, 0.62, 0.14]} />
+          <meshStandardMaterial color="#9da5ab" metalness={0.76} roughness={0.3} />
+        </mesh>
+      ))}
+
+      {[
+        [-1.35, 0.62, -1.32, 1.18],
+        [0.95, 0.62, -1.32, 0.92],
+      ].map((b, i) => (
+        <mesh key={`box-${i}`} position={[b[0], b[1], b[2]]} castShadow>
+          <boxGeometry args={[b[3], 0.92, 0.76]} />
+          <meshStandardMaterial color="#9ea3a7" metalness={0.72} roughness={0.28} />
+        </mesh>
+      ))}
+      <mesh position={[-3.52, 0.62, -1.45]} castShadow>
+        <boxGeometry args={[0.58, 1.02, 0.4]} />
+        <meshStandardMaterial color="#cf3d2f" metalness={0.3} roughness={0.48} />
+      </mesh>
+      <mesh position={[-4.62, 0.72, 0]} castShadow>
+        <boxGeometry args={[0.78, 0.28, 2.42]} />
+        <meshStandardMaterial color="#cfd3d6" metalness={0.92} roughness={0.12} />
+      </mesh>
+      <mesh position={[-5.08, 0.34, 0]} castShadow>
+        <boxGeometry args={[0.18, 0.62, 0.18]} />
+        <meshStandardMaterial color="#5d646a" metalness={0.6} roughness={0.38} />
+      </mesh>
+      <mesh position={[-4.92, 0.42, 0.9]} rotation={[0, 0, 0.28]} castShadow>
+        <boxGeometry args={[0.5, 0.18, 0.36]} />
+        <meshStandardMaterial color="#f7d44d" roughness={0.45} />
+      </mesh>
+      <mesh position={[-4.92, 0.42, -0.9]} rotation={[0, 0, -0.28]} castShadow>
+        <boxGeometry args={[0.5, 0.18, 0.36]} />
+        <meshStandardMaterial color="#f7d44d" roughness={0.45} />
+      </mesh>
+      <mesh position={[-4.26, 0.2, 0.86]} castShadow>
+        <boxGeometry args={[0.32, 0.32, 0.16]} />
+        <meshStandardMaterial color="#b02f24" metalness={0.25} roughness={0.58} />
+      </mesh>
+      <mesh position={[-4.26, 0.2, -0.86]} castShadow>
+        <boxGeometry args={[0.32, 0.32, 0.16]} />
+        <meshStandardMaterial color="#b02f24" metalness={0.25} roughness={0.58} />
       </mesh>
 
-      {/* Side access walkway */}
-      <mesh position={[-1.2, 1.05, -1.38]} castShadow>
-        <boxGeometry args={[3.7, 0.08, 0.32]} />
-        <meshStandardMaterial color="#bfc5c8" roughness={0.22} metalness={0.82} />
-      </mesh>
-
-      {/* Tank valves and pipework */}
-      <group position={[-0.15, 0.95, -1.15]}>
+      <group position={[0.25, 0.98, -1.12]}>
         <mesh rotation={[Math.PI / 2, 0, 0]} castShadow>
-          <cylinderGeometry args={[0.12, 0.12, 0.5, 16]} />
+          <cylinderGeometry args={[0.12, 0.12, 0.54, 16]} />
           <meshStandardMaterial color="#c89b3c" metalness={0.85} roughness={0.2} />
         </mesh>
-        <mesh position={[0.28, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
-          <cylinderGeometry args={[0.07, 0.07, 0.55, 16]} />
+        <mesh position={[0.3, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
+          <cylinderGeometry args={[0.07, 0.07, 0.58, 16]} />
           <meshStandardMaterial color="#c5c9cc" metalness={0.9} roughness={0.16} />
         </mesh>
-        <mesh position={[0.52, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
+        <mesh position={[0.58, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
           <torusGeometry args={[0.11, 0.025, 8, 20]} />
           <meshStandardMaterial color="#d7ac4c" metalness={0.92} roughness={0.15} />
         </mesh>
       </group>
 
-      {/* Rear bumper and underride guard */}
-      <mesh position={[-4.9, 0.82, 0]} castShadow>
-        <boxGeometry args={[0.18, 0.32, 2.25]} />
-        <meshStandardMaterial color="#d8d8d8" metalness={0.95} roughness={0.08} />
-      </mesh>
-
-      {/* Wheels */}
       {[
-        [3.3, 0.5, 1.25],
-        [3.3, 0.5, -1.25],
-        [0.2, 0.5, 1.25],
-        [0.2, 0.5, -1.25],
-        [-2.4, 0.5, 1.25],
-        [-2.4, 0.5, -1.25],
+        [3.3, 0.5, 1.25, 0.36],
+        [3.3, 0.5, -1.25, 0.36],
+        [0.75, 0.5, 1.25, 0.28],
+        [0.35, 0.5, 1.25, 0.28],
+        [0.75, 0.5, -1.25, 0.28],
+        [0.35, 0.5, -1.25, 0.28],
+        [-1.35, 0.5, 1.25, 0.28],
+        [-1.75, 0.5, 1.25, 0.28],
+        [-1.35, 0.5, -1.25, 0.28],
+        [-1.75, 0.5, -1.25, 0.28],
       ].map((p, i) => (
-        <group key={i} position={p as [number, number, number]} rotation={[Math.PI / 2, 0, 0]}>
+        <group key={i} position={[p[0], p[1], p[2]] as [number, number, number]} rotation={[Math.PI / 2, 0, 0]}>
           <mesh castShadow>
-            <cylinderGeometry args={[0.5, 0.5, 0.35, 16]} />
-            <meshStandardMaterial color="#101010" roughness={0.95} metalness={0.02} />
+            <cylinderGeometry args={[0.52, 0.52, p[3], 22]} />
+            <meshStandardMaterial color="#111111" roughness={0.96} metalness={0.02} />
           </mesh>
-          <mesh position={[0, 0.12, 0]} castShadow>
-            <cylinderGeometry args={[0.22, 0.22, 0.05, 16]} />
+          <mesh position={[0, p[3] / 3, 0]} castShadow>
+            <cylinderGeometry args={[0.24, 0.24, 0.05, 16]} />
             <meshStandardMaterial color="#d7d7d7" metalness={0.95} roughness={0.1} />
           </mesh>
-          <mesh position={[0, -0.12, 0]} castShadow>
-            <cylinderGeometry args={[0.22, 0.22, 0.05, 16]} />
+          <mesh position={[0, -p[3] / 3, 0]} castShadow>
+            <cylinderGeometry args={[0.24, 0.24, 0.05, 16]} />
             <meshStandardMaterial color="#d7d7d7" metalness={0.95} roughness={0.1} />
           </mesh>
         </group>
       ))}
 
-      {/* Headlights */}
-      <mesh position={[4.61, 1.4, 0.7]}>
-        <sphereGeometry args={[0.15, 12, 12]} />
-        <meshStandardMaterial color="#fff5c2" emissive="#fff0a8" emissiveIntensity={1.2} />
+      {[
+        [0.55, 0.96, 1.25, 0.88],
+        [0.55, 0.96, -1.25, 0.88],
+        [-1.55, 0.96, 1.25, 0.88],
+        [-1.55, 0.96, -1.25, 0.88],
+      ].map((p, i) => (
+        <mesh key={`mudguard-${i}`} position={[p[0], p[1], p[2]] as [number, number, number]} scale={[1, 1, p[3]]} rotation={[0, 0, Math.PI / 2]} castShadow>
+          <torusGeometry args={[0.62, 0.08, 8, 18, Math.PI]} />
+          <meshStandardMaterial color="#c1c7ca" roughness={0.18} metalness={0.84} />
+        </mesh>
+      ))}
+
+      <mesh position={[4.72, 1.35, 0.68]}>
+        <sphereGeometry args={[0.14, 12, 12]} />
+        <meshStandardMaterial color="#fff5c2" emissive="#fff5c2" emissiveIntensity={1.1} />
       </mesh>
-      <mesh position={[4.61, 1.4, -0.7]}>
-        <sphereGeometry args={[0.15, 12, 12]} />
-        <meshStandardMaterial color="#fff5c2" emissive="#fff0a8" emissiveIntensity={1.2} />
+      <mesh position={[4.72, 1.35, -0.68]}>
+        <sphereGeometry args={[0.14, 12, 12]} />
+        <meshStandardMaterial color="#fff5c2" emissive="#fff5c2" emissiveIntensity={1.1} />
       </mesh>
     </group>
   )
@@ -788,10 +867,14 @@ function SceneContents({ onObjectClick, view }: Scene1AProps) {
       <OrbitControls
         enableDamping
         dampingFactor={0.08}
-        minDistance={5}
-        maxDistance={30}
-        maxPolarAngle={Math.PI / 2.05}
-        target={[0, 1.5, 0]}
+        enablePan
+        enableZoom
+        enableRotate
+        minDistance={3}
+        maxDistance={60}
+        minPolarAngle={0.1}
+        maxPolarAngle={Math.PI - 0.1}
+        target={[0, 1.7, 0]}
       />
 
       <CameraRig position={initialCamera} target={[0, 1.5, 0]} />
