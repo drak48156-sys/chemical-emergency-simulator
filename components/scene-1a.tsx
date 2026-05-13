@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-import { useRef, useMemo, useState, useCallback } from "react"
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber"
+import { useRef, useMemo, useState, useCallback, useEffect } from "react"
+import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber"
 import { OrbitControls, Sky, Text } from "@react-three/drei"
 import * as THREE from "three"
 
@@ -886,10 +886,14 @@ function SceneContents({ onObjectClick, view }: Scene1AProps) {
 }
 
 function CameraRig({ position, target }: { position: [number, number, number]; target: [number, number, number] }) {
-  useFrame((state) => {
-    state.camera.position.lerp(new THREE.Vector3(...position), 0.08)
-    state.camera.lookAt(...target)
-  })
+  const { camera } = useThree()
+
+  useEffect(() => {
+    camera.position.set(...position)
+    camera.lookAt(...target)
+    camera.updateProjectionMatrix()
+  }, [camera, position, target])
+
   return null
 }
 
