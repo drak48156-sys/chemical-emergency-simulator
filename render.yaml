@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: chemical-emergency-simulator
+    runtime: node
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build
+    startCommand: pnpm start
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22
