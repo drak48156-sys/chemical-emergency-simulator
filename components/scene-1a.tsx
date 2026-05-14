@@ -53,6 +53,42 @@ function createSteelTexture() {
   return tex
 }
 
+function createHazmatDiamondTexture() {
+  const size = 512
+  const canvas = document.createElement("canvas")
+  canvas.width = size
+  canvas.height = size
+  const ctx = canvas.getContext("2d")!
+  ctx.clearRect(0, 0, size, size)
+
+  ctx.save()
+  ctx.translate(size / 2, size / 2)
+  ctx.rotate(Math.PI / 4)
+  ctx.fillStyle = "#CC0000"
+  ctx.fillRect(-160, -160, 320, 320)
+  ctx.strokeStyle = "#FFFFFF"
+  ctx.lineWidth = 12
+  ctx.strokeRect(-145, -145, 290, 290)
+  ctx.strokeStyle = "#000000"
+  ctx.lineWidth = 8
+  ctx.strokeRect(-160, -160, 320, 320)
+  ctx.restore()
+
+  ctx.fillStyle = "#FFFFFF"
+  ctx.font = "bold 160px Arial"
+  ctx.textAlign = "center"
+  ctx.textBaseline = "middle"
+  ctx.fillText("🔥", size / 2, size / 2 - 30)
+
+  ctx.font = "bold 100px Arial"
+  ctx.fillStyle = "#FFFFFF"
+  ctx.fillText("3", size / 2, size * 0.78)
+
+  const tex = new THREE.CanvasTexture(canvas)
+  tex.needsUpdate = true
+  return tex
+}
+
 type ObjectId = "triangulos" | "telefono" | "indicador-viento" | "valvula" | "extintor"
 
 interface Scene1AProps {
@@ -195,6 +231,7 @@ function Road() {
 function TankerTruck() {
   const cabPaint = useMemo(() => createPaintTexture("#f3f3f3", "#ffffff"), [])
   const steelTexture = useMemo(() => createSteelTexture(), [])
+  const hazmatTexture = useMemo(() => createHazmatDiamondTexture(), [])
   const tankMaterial = {
     map: steelTexture,
     color: "#C8D0D8",
@@ -312,16 +349,10 @@ function TankerTruck() {
         <meshStandardMaterial color="#42474d" metalness={0.8} roughness={0.25} />
       </mesh>
 
-      <group position={[-0.5, 1.86, 1.27]} rotation={[0, 0, Math.PI / 4]}>
-        <mesh>
-          <planeGeometry args={[0.72, 0.72]} />
-          <meshStandardMaterial color="#f04f2e" side={THREE.DoubleSide} />
-        </mesh>
-        <mesh position={[0, 0, 0.01]}>
-          <planeGeometry args={[0.4, 0.4]} />
-          <meshStandardMaterial color="#111111" side={THREE.DoubleSide} />
-        </mesh>
-      </group>
+      <mesh position={[-0.5, 1.74, 1.25]} renderOrder={2}>
+        <planeGeometry args={[0.6, 0.6]} />
+        <meshBasicMaterial map={hazmatTexture} transparent side={THREE.DoubleSide} />
+      </mesh>
 
       {[-4.0, -2.5, -1.0, 0.5, 2.0].map((x, i) => (
         <mesh key={`hatch-${i}`} position={[x, 3.03, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
