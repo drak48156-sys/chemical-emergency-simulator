@@ -287,9 +287,25 @@ function TankerTruck() {
         <meshStandardMaterial {...tankMaterial} />
       </mesh>
 
-      <mesh position={[-1.2, 1.82, 1.16]}>
-        <boxGeometry args={[7.45, 0.22, 0.08]} />
-        <meshStandardMaterial color="#ff6f1a" emissive="#ff6f1a" emissiveIntensity={0.18} />
+      <mesh position={[-1.2, 1.63, 1.22]} renderOrder={1}>
+        <boxGeometry args={[7.65, 0.47, 0.02]} />
+        <meshStandardMaterial
+          color="#FF6600"
+          metalness={0.2}
+          roughness={0.5}
+          polygonOffset
+          polygonOffsetFactor={-1}
+        />
+      </mesh>
+      <mesh position={[-1.2, 1.63, -1.22]} renderOrder={1}>
+        <boxGeometry args={[7.65, 0.47, 0.02]} />
+        <meshStandardMaterial
+          color="#FF6600"
+          metalness={0.2}
+          roughness={0.5}
+          polygonOffset
+          polygonOffsetFactor={-1}
+        />
       </mesh>
       <mesh position={[-1.2, 1.3, 1.19]}>
         <boxGeometry args={[7.3, 0.1, 0.05]} />
