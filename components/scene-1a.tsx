@@ -388,10 +388,6 @@ function TankerTruck() {
         ))}
       </group>
 
-      <mesh position={[-4.98, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <torusGeometry args={[1.27, 0.06, 10, 34]} />
-        <meshStandardMaterial color="#d64d3d" metalness={0.35} roughness={0.45} />
-      </mesh>
       {[-0.92, -0.3, 0.32, 0.92].map((y, i) => (
         <mesh key={`rear-rivet-${i}`} position={[-6.21, 1.82 + y, 0.02]} castShadow>
           <boxGeometry args={[0.05, 0.12, 2.08]} />
@@ -403,12 +399,6 @@ function TankerTruck() {
         <boxGeometry args={[6.1, 0.1, 0.26]} />
         <meshStandardMaterial color="#bfc5c8" roughness={0.2} metalness={0.84} />
       </mesh>
-      {[-3.35, -1.4, 0.55, 2.45].map((x, i) => (
-        <mesh key={`support-${i}`} position={[x, 0.68, -1.18]} castShadow>
-          <boxGeometry args={[0.14, 0.62, 0.14]} />
-          <meshStandardMaterial color="#9da5ab" metalness={0.76} roughness={0.3} />
-        </mesh>
-      ))}
 
       {[
         [-2.15, 0.62, -1.32, 1.7],
@@ -424,7 +414,7 @@ function TankerTruck() {
         <meshStandardMaterial color="#cf3d2f" metalness={0.3} roughness={0.48} />
       </mesh>
       <mesh position={[-5.72, 0.72, 0]} castShadow>
-        <boxGeometry args={[0.78, 0.28, 2.42]} />
+        <boxGeometry args={[0.78, 0.28, 1.48]} />
         <meshStandardMaterial color="#cfd3d6" metalness={0.92} roughness={0.12} />
       </mesh>
       <mesh position={[-6.18, 0.34, 0]} castShadow>
