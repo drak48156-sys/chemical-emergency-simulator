@@ -229,7 +229,7 @@ function Road() {
 /* -------------------------------------------------------------------------- */
 
 function TankerTruck() {
-  const cabPaint = useMemo(() => createPaintTexture("#f3f3f3", "#ffffff"), [])
+  const cabPaint = useMemo(() => createPaintTexture("#f2f2f2", "#ffffff"), [])
   const steelTexture = useMemo(() => createSteelTexture(), [])
   const hazmatTexture = useMemo(() => createHazmatDiamondTexture(), [])
   const tankMaterial = {
@@ -247,40 +247,36 @@ function TankerTruck() {
         <meshStandardMaterial color="#78838d" metalness={0.9} roughness={0.25} />
       </mesh>
 
-      <mesh position={[3.72, 1.52, 0]} rotation={[0, 0, -0.03]} castShadow>
-        <boxGeometry args={[2.48, 1.88, 2.18]} />
-        <meshStandardMaterial map={cabPaint} color="#f5f5f5" roughness={0.24} metalness={0.38} />
+      <mesh position={[3.55, 1.6, 0]} castShadow>
+        <boxGeometry args={[2.2, 2.0, 2.4]} />
+        <meshStandardMaterial map={cabPaint} color="#F2F2F2" roughness={0.3} metalness={0.1} />
       </mesh>
-      <mesh position={[3.05, 2.12, 0]} castShadow>
-        <boxGeometry args={[1.16, 0.52, 2.0]} />
-        <meshStandardMaterial map={cabPaint} color="#f7f7f7" roughness={0.22} metalness={0.28} />
+      <mesh position={[4.35, 2.3, 0]} rotation={[0, 0, -0.4]} castShadow>
+        <boxGeometry args={[0.6, 1.0, 2.38]} />
+        <meshStandardMaterial color="#1a1a2e" transparent opacity={0.7} roughness={0.1} metalness={0.05} />
       </mesh>
-      <mesh position={[4.48, 2.34, 0]} castShadow>
-        <boxGeometry args={[1.05, 0.54, 2.02]} />
-        <meshStandardMaterial map={cabPaint} color="#f5f5f5" roughness={0.22} metalness={0.3} />
+      <mesh position={[3.85, 2.82, 0]} castShadow>
+        <boxGeometry args={[1.0, 0.3, 2.2]} />
+        <meshStandardMaterial map={cabPaint} color="#E8E8E8" roughness={0.3} metalness={0.08} />
       </mesh>
-      <mesh position={[4.83, 1.72, 0]} castShadow>
-        <boxGeometry args={[0.34, 0.95, 1.92]} />
-        <meshStandardMaterial map={cabPaint} color="#f7f7f7" roughness={0.24} metalness={0.24} />
+      <mesh position={[4.72, 1.72, 0]} castShadow>
+        <boxGeometry args={[0.4, 1.0, 2.0]} />
+        <meshStandardMaterial map={cabPaint} color="#F2F2F2" roughness={0.24} metalness={0.12} />
       </mesh>
-      <mesh position={[4.63, 1.98, 0]} rotation={[0, 0, -0.18]} castShadow>
-        <boxGeometry args={[0.12, 1.18, 1.9]} />
-        <meshStandardMaterial color="#314355" roughness={0.05} metalness={0.15} transparent opacity={0.58} />
-      </mesh>
-      <mesh position={[3.42, 1.72, 1.14]} castShadow>
-        <boxGeometry args={[1.18, 1.18, 0.06]} />
+      <mesh position={[3.1, 1.7, 1.23]} castShadow>
+        <boxGeometry args={[1.15, 1.28, 0.06]} />
         <meshStandardMaterial color="#dfe3e6" roughness={0.26} metalness={0.35} />
       </mesh>
-      <mesh position={[3.42, 1.72, -1.14]} castShadow>
-        <boxGeometry args={[1.18, 1.18, 0.06]} />
+      <mesh position={[3.1, 1.7, -1.23]} castShadow>
+        <boxGeometry args={[1.15, 1.28, 0.06]} />
         <meshStandardMaterial color="#dfe3e6" roughness={0.26} metalness={0.35} />
       </mesh>
-      <mesh position={[3.05, 0.92, 1.13]} castShadow>
-        <boxGeometry args={[1.15, 0.34, 0.14]} />
+      <mesh position={[2.95, 0.92, 1.18]} castShadow>
+        <boxGeometry args={[1.25, 0.34, 0.14]} />
         <meshStandardMaterial color="#d5d9dc" metalness={0.82} roughness={0.2} />
       </mesh>
-      <mesh position={[3.05, 0.92, -1.13]} castShadow>
-        <boxGeometry args={[1.15, 0.34, 0.14]} />
+      <mesh position={[2.95, 0.92, -1.18]} castShadow>
+        <boxGeometry args={[1.25, 0.34, 0.14]} />
         <meshStandardMaterial color="#d5d9dc" metalness={0.82} roughness={0.2} />
       </mesh>
       <mesh position={[2.65, 0.78, 0]} castShadow>
