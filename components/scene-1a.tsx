@@ -312,20 +312,20 @@ function TankerTruck() {
       ))}
 
       <mesh position={[-1.2, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <cylinderGeometry args={[1.24, 1.24, 7.65, 40]} />
+        <cylinderGeometry args={[1.12, 1.12, 7.2, 32]} />
         <meshStandardMaterial {...tankMaterial} />
       </mesh>
-      <mesh position={[-5.02, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <sphereGeometry args={[1.24, 28, 20]} />
+      <mesh position={[-4.8, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} scale={[1, 1, 0.35]} castShadow>
+        <sphereGeometry args={[1.12, 28, 20]} />
         <meshStandardMaterial {...tankMaterial} />
       </mesh>
-      <mesh position={[2.62, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <sphereGeometry args={[1.24, 28, 20]} />
+      <mesh position={[2.4, 1.82, 0]} rotation={[0, 0, Math.PI / 2]} scale={[1, 1, 0.35]} castShadow>
+        <sphereGeometry args={[1.12, 28, 20]} />
         <meshStandardMaterial {...tankMaterial} />
       </mesh>
 
-      <mesh position={[-1.2, 1.63, 1.22]} renderOrder={1}>
-        <boxGeometry args={[7.65, 0.47, 0.02]} />
+      <mesh position={[-1.2, 1.65, 1.1]} renderOrder={1}>
+        <boxGeometry args={[7.2, 0.43, 0.02]} />
         <meshStandardMaterial
           color="#FF6600"
           metalness={0.2}
@@ -334,8 +334,8 @@ function TankerTruck() {
           polygonOffsetFactor={-1}
         />
       </mesh>
-      <mesh position={[-1.2, 1.63, -1.22]} renderOrder={1}>
-        <boxGeometry args={[7.65, 0.47, 0.02]} />
+      <mesh position={[-1.2, 1.65, -1.1]} renderOrder={1}>
+        <boxGeometry args={[7.2, 0.43, 0.02]} />
         <meshStandardMaterial
           color="#FF6600"
           metalness={0.2}
@@ -344,8 +344,8 @@ function TankerTruck() {
           polygonOffsetFactor={-1}
         />
       </mesh>
-      <mesh position={[-1.2, 1.3, 1.19]}>
-        <boxGeometry args={[7.3, 0.1, 0.05]} />
+      <mesh position={[-1.2, 1.34, 1.08]}>
+        <boxGeometry args={[7.0, 0.1, 0.05]} />
         <meshStandardMaterial color="#42474d" metalness={0.8} roughness={0.25} />
       </mesh>
 
@@ -354,24 +354,24 @@ function TankerTruck() {
         <meshBasicMaterial map={hazmatTexture} transparent side={THREE.DoubleSide} />
       </mesh>
 
-      {[-4.0, -2.5, -1.0, 0.5, 2.0].map((x, i) => (
+      {[-3.7, -2.15, -0.6, 0.95].map((x, i) => (
         <mesh key={`hatch-${i}`} position={[x, 3.03, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
           <torusGeometry args={[0.18, 0.03, 8, 20]} />
           <meshStandardMaterial color="#bfc4c7" metalness={0.88} roughness={0.2} />
         </mesh>
       ))}
-      <mesh position={[-1.2, 3.0, -1.32]} castShadow>
-        <boxGeometry args={[6.45, 0.08, 0.16]} />
+      <mesh position={[-1.2, 2.95, -1.2]} castShadow>
+        <boxGeometry args={[5.95, 0.08, 0.16]} />
         <meshStandardMaterial color="#bfc5c8" roughness={0.2} metalness={0.86} />
       </mesh>
-      {[-4.2, -2.7, -1.2, 0.3, 1.8, 3.0].map((x, i) => (
+      {[-3.75, -2.25, -0.75, 0.75, 2.25].map((x, i) => (
         <mesh key={`rail-post-${i}`} position={[x, 3.12, -1.32]} castShadow>
           <cylinderGeometry args={[0.03, 0.03, 0.34, 8]} />
           <meshStandardMaterial color="#c9ced2" metalness={0.86} roughness={0.22} />
         </mesh>
       ))}
 
-      <group position={[-4.75, 1.3, -1.36]}>
+      <group position={[-4.55, 1.3, -1.2]}>
         <mesh position={[0, 0.92, 0]} castShadow>
           <cylinderGeometry args={[0.04, 0.04, 1.85, 8]} />
           <meshStandardMaterial color="#b8b8b8" metalness={0.82} roughness={0.22} />
@@ -388,15 +388,15 @@ function TankerTruck() {
         ))}
       </group>
 
-      {[-0.92, -0.3, 0.32, 0.92].map((y, i) => (
-        <mesh key={`rear-rivet-${i}`} position={[-6.21, 1.82 + y, 0.02]} castShadow>
-          <boxGeometry args={[0.05, 0.12, 2.08]} />
+      {[-0.72, -0.2, 0.24, 0.72].map((y, i) => (
+        <mesh key={`rear-rivet-${i}`} position={[-5.18, 1.82 + y, 0.02]} castShadow>
+          <boxGeometry args={[0.05, 0.12, 1.7]} />
           <meshStandardMaterial color="#d9d9d9" metalness={0.86} roughness={0.22} />
         </mesh>
       ))}
 
-      <mesh position={[-1.25, 0.98, -1.4]} castShadow>
-        <boxGeometry args={[6.1, 0.1, 0.26]} />
+      <mesh position={[-1.25, 0.98, -1.28]} castShadow>
+        <boxGeometry args={[5.7, 0.1, 0.26]} />
         <meshStandardMaterial color="#bfc5c8" roughness={0.2} metalness={0.84} />
       </mesh>
 
